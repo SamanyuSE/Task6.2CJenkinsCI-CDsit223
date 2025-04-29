@@ -21,18 +21,18 @@ pipeline {
                         echo 'Tests passed successfully.'
                         
                         // Send email notification for test success
-                        emailext subject: "Jenkins Pipeline: Tests Passed ✅",
+                        emailext subject: "Jenkins Pipeline: Tests Passed",
                             body: """
                                 <p>All unit and integration tests passed successfully.</p>
                                 <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                             """,
-                            to: 'tanmayabhinav@gmail.com',
+                            to: 'samanyu.sharma@gmail.com',
                             mimeType: 'text/html'
                     } catch (Exception e) {
                         echo 'Tests failed! Sending failure email...'
                         
                         // Send email notification for test failure
-                        emailext subject: "Jenkins Pipeline: Tests Failed ❌",
+                        emailext subject: "Jenkins Pipeline: Tests Failed",
                             body: """
                                 <p>Unit and integration tests failed. Please check the logs.</p>
                                 <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
@@ -81,7 +81,7 @@ pipeline {
         always {
             echo 'Sending final pipeline status notification...'
             
-            emailext subject: "Jenkins Pipeline Execution Status 📩",
+            emailext subject: "Jenkins Pipeline Execution Status",
                 body: """
                     <p>The pipeline has completed execution.</p>
                     <p>Final Status: ${currentBuild.currentResult}</p>
